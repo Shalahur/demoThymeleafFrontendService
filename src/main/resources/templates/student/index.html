@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorator="fragments/layout">
+<head>
+    <title>Students</title>
+</head>
+<body>
+<div layout:fragment="content" th:remove="tag">
+    okk
+
+<!--    <a th:href="${@webLinkFactory.addTenant()}" class="btn btn-primary btn-lg btn-block">Add Tenant </a>-->
+    <table class="table table-hover table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Full Name</th>
+            <th>Father Name</th>
+            <th>Mother Name</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+<!--        <td>11</td>-->
+<!--        <td>11</td>-->
+<!--        <td>11</td>-->
+<!--        <td>11</td>-->
+<!--        <td>11</td>-->
+        <th:block th:each="item : ${students}" th:object="${item}">
+            <tr th:replace="student/student-item :: tr"></tr>
+        </th:block>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
