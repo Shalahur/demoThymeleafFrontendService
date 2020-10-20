@@ -7,9 +7,7 @@
 </head>
 <body>
 <div layout:fragment="content" th:remove="tag">
-    okk
-
-<!--    <a th:href="${@webLinkFactory.addTenant()}" class="btn btn-primary btn-lg btn-block">Add Tenant </a>-->
+        <a th:href="${@webLinkFactory.addStudent()}" class="btn btn-primary btn-lg btn-block">Add Student </a>
     <table class="table table-hover table-bordered table-striped">
         <thead>
         <tr>
@@ -21,11 +19,6 @@
         </tr>
         </thead>
         <tbody>
-<!--        <td>11</td>-->
-<!--        <td>11</td>-->
-<!--        <td>11</td>-->
-<!--        <td>11</td>-->
-<!--        <td>11</td>-->
         <th:block th:each="item : ${students}" th:object="${item}">
             <tr th:replace="student/student-item :: tr"></tr>
         </th:block>
