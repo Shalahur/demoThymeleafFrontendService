@@ -2,6 +2,7 @@ package com.example.demothymeleafFrontend.controller;
 
 import com.example.demothymeleafFrontend.dto.Student;
 import com.example.demothymeleafFrontend.form.StudentForm;
+import com.example.demothymeleafFrontend.support.APIBaseURI;
 import com.example.demothymeleafFrontend.support.Constant;
 import com.example.demothymeleafFrontend.support.WebLinkFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,10 +36,13 @@ public class StudentController {
     @Autowired
     WebLinkFactory webLinkFactory;
 
+    @Autowired
+    APIBaseURI apiBaseURI;
+
     @GetMapping(INDEX_ROUTE)
     public String index(Model model) {
         ResponseEntity<List<Student>> studentResponse =
-                restTemplate.exchange("http://localhost:8080/student",
+                restTemplate.exchange(apiBaseURI.getStudentApi(),
                         HttpMethod.GET, null, new ParameterizedTypeReference<List<Student>>() {
                         });
 
@@ -55,7 +59,7 @@ public class StudentController {
 
     @GetMapping(EDIT_ROUTE)
     public String edit(@PathVariable(value = "id") Long studentId, Model model) {
-        StudentForm studentForm = restTemplate.getForObject("http://localhost:8080/student/edit/" + studentId,
+        StudentForm studentForm = restTemplate.getForObject(apiBaseURI.getStudentApi()+"/edit/" + studentId,
                 StudentForm.class);
         model.addAttribute("studentForm", studentForm);
         return "student/student-form";
@@ -69,7 +73,7 @@ public class StudentController {
             model.addAttribute("studentForm", studentForm);
             return "student/student-form";
         } else {
-            restTemplate.postForObject("http://localhost:8080/student/add", studentForm, Student.class);
+            restTemplate.postForObject(apiBaseURI.getStudentApi()+"/add", studentForm, Student.class);
             return "redirect:" + webLinkFactory.studentIndex();
         }
     }

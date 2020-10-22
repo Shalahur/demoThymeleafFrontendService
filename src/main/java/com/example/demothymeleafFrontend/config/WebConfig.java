@@ -1,5 +1,6 @@
 package com.example.demothymeleafFrontend.config;
 
+import com.example.demothymeleafFrontend.support.APIBaseURI;
 import com.example.demothymeleafFrontend.support.WebLinkFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,9 +16,16 @@ public class WebConfig {
         return new RestTemplate();
     }
 
+    @Bean
+    public APIBaseURI apiBaseURI() {
+        return new APIBaseURI();
+    }
+
     @Bean(name = "webLinkFactory")
     @Scope(value = WebApplicationContext.SCOPE_REQUEST, proxyMode = ScopedProxyMode.TARGET_CLASS)
     public WebLinkFactory webLinkFactory() {
         return new WebLinkFactory();
     }
+
+
 }
