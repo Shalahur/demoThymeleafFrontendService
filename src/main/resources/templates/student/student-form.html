@@ -7,13 +7,13 @@
 </head>
 <body>
 <div layout:fragment="content" th:remove="tag">
-    <form name="studentForm"
+    <form name="student"
           th:action="${@webLinkFactory.addStudent()}"
-          th:object="${studentForm}"
+          th:object="${student}"
           method="post">
         <input type="hidden" th:field="*{Id}">
-        <h1 th:if="${studentForm?.getId()==null}">Create Student</h1>
-        <h1 th:if="${studentForm?.getId()!=null}">Update Student</h1>
+        <h1 th:if="${student?.getId()==null}">Create Student</h1>
+        <h1 th:if="${student?.getId()!=null}">Update Student</h1>
         <hr>
         <div class="row">
             <div class="col-sm-6">

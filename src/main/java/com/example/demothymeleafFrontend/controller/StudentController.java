@@ -1,7 +1,6 @@
 package com.example.demothymeleafFrontend.controller;
 
 import com.example.demothymeleafFrontend.dto.Student;
-import com.example.demothymeleafFrontend.form.StudentForm;
 import com.example.demothymeleafFrontend.support.APIBaseURI;
 import com.example.demothymeleafFrontend.support.Constant;
 import com.example.demothymeleafFrontend.support.WebLinkFactory;
@@ -53,27 +52,27 @@ public class StudentController {
 
     @GetMapping(ADD_ROUTE)
     public String add(Model model) {
-        model.addAttribute("studentForm", new StudentForm());
+        model.addAttribute("student", new Student());
         return "student/student-form";
     }
 
     @GetMapping(EDIT_ROUTE)
     public String edit(@PathVariable(value = "id") Long studentId, Model model) {
-        StudentForm studentForm = restTemplate.getForObject(apiBaseURI.getStudentApi()+"/edit/" + studentId,
-                StudentForm.class);
-        model.addAttribute("studentForm", studentForm);
+        Student student = restTemplate.getForObject(apiBaseURI.getStudentApi() + "/edit/" + studentId,
+                Student.class);
+        model.addAttribute("student", student);
         return "student/student-form";
     }
 
     @PostMapping(ADD_ROUTE)
     public String add(Model model,
-                      @Valid @ModelAttribute(value = "studentForm") StudentForm studentForm,
+                      @Valid @ModelAttribute(value = "student") Student student,
                       BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("studentForm", studentForm);
+            model.addAttribute("student", student);
             return "student/student-form";
         } else {
-            restTemplate.postForObject(apiBaseURI.getStudentApi()+"/add", studentForm, Student.class);
+            restTemplate.postForObject(apiBaseURI.getStudentApi() + "/add", student, Student.class);
             return "redirect:" + webLinkFactory.studentIndex();
         }
     }
