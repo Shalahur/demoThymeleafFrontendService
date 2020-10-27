@@ -20,6 +20,13 @@
             </div>
         </form>
 
+        <div>
+            <select id="locales">
+                <option value="en" th:selected="${@webLinkFactory.getLanguage()}=='en'" th:text="#{app.lang.english}"></option>
+                <option value="bn" th:selected="${@webLinkFactory.getLanguage()}=='bn'" th:text="#{app.lang.bangla}"></option>
+            </select>
+        </div>
+
         <div class="navbar-collapse collapse">
             <ul class="navbar-nav navbar-align">
                 <li class="nav-item dropdown">

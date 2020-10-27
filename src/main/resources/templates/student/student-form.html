@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org"
-      layout:decorate="fragments/layout">
+      layout:decorate="fragments/layout" >
 <head>
     <title>Student</title>
 </head>
@@ -12,20 +12,20 @@
           th:object="${student}"
           method="post">
         <input type="hidden" th:field="*{Id}">
-        <h1 th:if="${student?.getId()==null}">Create Student</h1>
-        <h1 th:if="${student?.getId()!=null}">Update Student</h1>
+        <h1 th:if="${student?.getId()==null}"><span th:text="#{app.student.create }"></span></h1>
+        <h1 th:if="${student?.getId()!=null}"><span th:text="#{app.student.update }"></span></h1>
         <hr>
         <div class="row">
             <div class="col-sm-6">
                 <div class="form-group">
-                    <label>Name</label>
+                    <label><span th:text="#{app.student.name}"></span></label>
                     <input type="text" class="form-control"
                            th:field="*{name}">
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="form-group">
-                    <label>Father Name</label>
+                    <label><span th:text="#{app.student.father.name}"></span></label>
                     <input type="text" class="form-control" th:field="*{fatherName}">
                 </div>
             </div>
@@ -34,13 +34,13 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="form-group">
-                    <label>Mother Name</label>
+                    <label><span th:text="#{app.student.mother.name}"></span></label>
                     <input type="text" class="form-control" th:field="*{motherName}">
                 </div>
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary"><span th:text="#{app.submit}"></span></button>
     </form>
 </div>
 </body>

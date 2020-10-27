@@ -3,12 +3,14 @@ package com.example.demothymeleafFrontend.support;
 import com.example.demothymeleafFrontend.controller.StudentController;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.servlet.support.RequestContextUtils;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Locale;
 
 public class WebLinkFactory {
     @Autowired
@@ -27,6 +29,15 @@ public class WebLinkFactory {
                 return UriComponentsBuilder.fromPath(request.getContextPath() + "/");
             }
         }
+    }
+
+    // TODO: this need to be refactor
+    public Locale getLocale() {
+        return RequestContextUtils.getLocale(request);
+    }
+
+    public String getLanguage() {
+        return getLocale().getLanguage();
     }
 
     private String build(String path) {

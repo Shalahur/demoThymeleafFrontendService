@@ -7,15 +7,16 @@
 </head>
 <body>
 <div layout:fragment="content" th:remove="tag">
-        <a th:href="${@webLinkFactory.addStudent()}" class="btn btn-primary btn-lg btn-block">Add Student </a>
+        <a th:href="${@webLinkFactory.addStudent()}" class="btn btn-primary btn-lg btn-block">
+            <span th:text="#{app.student.add}"></span> </a>
     <table class="table table-hover table-bordered table-striped">
         <thead>
         <tr>
             <th>#</th>
-            <th>Full Name</th>
-            <th>Father Name</th>
-            <th>Mother Name</th>
-            <th>Action</th>
+            <th><span th:text="#{app.student.full.name}"></span> </th>
+            <th><span th:text="#{app.student.father.name}"></span></th>
+            <th><span th:text="#{app.student.mother.name}"></span></th>
+            <th><span th:text="#{app.student.action}"></span></th>
         </tr>
         </thead>
         <tbody>
