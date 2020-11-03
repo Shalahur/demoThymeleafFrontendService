@@ -1,6 +1,6 @@
 package com.example.demothymeleafFrontend.controller;
 
-import com.example.demothymeleafFrontend.dto.Student;
+import com.example.demothymeleafFrontend.model.Student;
 import com.example.demothymeleafFrontend.support.APIBaseURI;
 import com.example.demothymeleafFrontend.support.Constant;
 import com.example.demothymeleafFrontend.support.WebLinkFactory;

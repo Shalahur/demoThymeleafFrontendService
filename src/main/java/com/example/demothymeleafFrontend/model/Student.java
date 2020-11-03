@@ -1,4 +1,4 @@
-package com.example.demothymeleafFrontend.dto;
+package com.example.demothymeleafFrontend.model;
 
 import lombok.*;
 

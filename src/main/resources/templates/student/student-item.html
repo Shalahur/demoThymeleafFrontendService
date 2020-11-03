@@ -12,13 +12,14 @@
     <td th:text="${item?.getFatherName()}">Mark</td>
     <td th:text="${item?.getMotherName()}">Mark</td>
     <td>
-        <a th:href="${@webLinkFactory.updateStudent(item?.getId())}" class="btn btn-primary a-btn-slide-text hover-button">
+        <a th:href="${@webLinkFactory.updateStudent(item?.getId())}"
+           class="btn btn-primary a-btn-slide-text hover-button">
             <span><strong th:text="#{app.edit}"></strong></span>
         </a>
-<!--        <a th:href="${@webLinkFactory.deleteTenant(item?.getId())}" class="btn btn-primary a-btn-slide-text hover-button">-->
-<!--            <span class="glyphicon  glyphicon-trash" aria-hidden="true"></span>-->
-<!--            <span><strong>Delete</strong></span>-->
-<!--        </a>-->
+        <!--        <a th:href="${@webLinkFactory.deleteTenant(item?.getId())}" class="btn btn-primary a-btn-slide-text hover-button">-->
+        <!--            <span class="glyphicon  glyphicon-trash" aria-hidden="true"></span>-->
+        <!--            <span><strong>Delete</strong></span>-->
+        <!--        </a>-->
 
     </td>
 </tr>

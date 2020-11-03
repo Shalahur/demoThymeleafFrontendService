@@ -3,6 +3,7 @@ package com.example.demothymeleafFrontend.config;
 import com.example.demothymeleafFrontend.support.APIBaseURI;
 import com.example.demothymeleafFrontend.support.Constant;
 import com.example.demothymeleafFrontend.support.WebLinkFactory;
+import com.example.demothymeleafFrontend.support.WebTemplateResolver;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -38,6 +39,12 @@ public class WebConfig implements WebMvcConfigurer {
         return new WebLinkFactory();
     }
 
+    @Bean(name = "webTemplateResolver")
+    @Scope(value = WebApplicationContext.SCOPE_REQUEST, proxyMode = ScopedProxyMode.TARGET_CLASS)
+    public WebTemplateResolver webTemplateResolver() {
+        return new WebTemplateResolver();
+    }
+
     // internationalization config.
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -46,25 +53,23 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Bean
     public HandlerInterceptor localeChangeInterceptor() {
-        LocaleChangeInterceptor localeChangeInterceptor =new LocaleChangeInterceptor();
+        LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
         localeChangeInterceptor.setParamName(Constant.LANGUAGE_PARAM);
         return localeChangeInterceptor;
     }
 
     @Bean
-    public LocaleResolver localeResolver(){
-        SessionLocaleResolver sessionLocaleResolver =new SessionLocaleResolver();
+    public LocaleResolver localeResolver() {
+        SessionLocaleResolver sessionLocaleResolver = new SessionLocaleResolver();
         sessionLocaleResolver.setDefaultLocale(new Locale("bn", "BN"));
         return sessionLocaleResolver;
     }
 
-//    TODO: need to study what is the purpose of MessageSource
     @Bean
     public MessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
         messageSource.setBasenames(Constant.LANGUAGE_BASENAME);
         messageSource.setDefaultEncoding(Constant.UTF8_ENCODING);
-//        messageSource.setUseCodeAsDefaultMessage(true);
         return messageSource;
     }
     // internationalization config.
